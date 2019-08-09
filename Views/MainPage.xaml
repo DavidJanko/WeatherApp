@@ -9,6 +9,7 @@
              BindingContext="{viewmodels:MainPageViewModel}">
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="Počasí pro husťáky" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
@@ -17,9 +18,12 @@
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding HledatGPS}" Grid.Column="0" HorizontalOptions="FillAndExpand"></Button>
                 <Button Command="{Binding Vyhledat}" Grid.Column="2" HorizontalOptions="FillAndExpand"> </Button>
-                <Entry Text="{Binding VstupnniText}" Grid.Column="1" HorizontalOptions="FillAndExpand"></Entry>
+                <Entry Text="{Binding VstupniText}" Grid.Column="1" HorizontalOptions="FillAndExpand" Placeholder="Hledat město"></Entry>
             </Grid>
-            <Label Text="{Binding NejakejText}" />
+            <StackLayout Padding="5,5,5,0">
+                
+            </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
