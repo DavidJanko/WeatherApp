@@ -10,7 +10,6 @@ namespace WeatherApp
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 
