@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WeatherApp.ViewModels.Models
 {
-    public class WeatherData
+    public class WeatherData //data z API
     {
         [JsonProperty("name")]
         public string Title { get; set; }
@@ -44,6 +44,11 @@ namespace WeatherApp.ViewModels.Models
         public long Cod { get; set; }
     }
 
+    public class HistoryData //vlastní class dat pro databázi (historie vyhledávání)
+    {
+        public string Title { get; set; }
+        public double Temperature { get; set; }
+    }
 
     public class Clouds
     {

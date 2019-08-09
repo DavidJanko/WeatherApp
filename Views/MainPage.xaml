@@ -21,9 +21,27 @@
                 <Entry Text="{Binding VstupniText}" Grid.Column="1" HorizontalOptions="FillAndExpand" Placeholder="Hledat město"></Entry>
             </Grid>
             <StackLayout Padding="5,5,5,0">
-                
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Teplota :"/>
+                    <Label Text="{Binding Teplota}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Druh :"/>
+                <Label Text="{Binding DruhPocasi}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Oblačnost :"/>
+                    <Label Text="{Binding Oblacnost}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Vlhkost :"/>
+                    <Label Text="{Binding Vlhkost}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Západ slunce :"/>
+                    <Label Text="{Binding ZapadSlunce}"/>
+                </StackLayout>
             </StackLayout>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
