@@ -1,6 +1,4 @@
-﻿using Android;
-using Java.Util;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
@@ -34,12 +32,27 @@ namespace WeatherApp.ViewModels
 
         private async void NajitLokaci()
         {
-            Permission[] _requiredPermissions = { Permission.Location }; //Povolení lokace
-            var results = await CrossPermissions.Current.RequestPermissionsAsync(_requiredPermissions); //Čekání na povolení lokace
-            var location = await Geolocation.GetLocationAsync(); //Získání lokace
-
-            var json = new WebClient().DownloadString("https://api.opencagedata.com/geocode/v1/json?q=" + location.Latitude.ToString() + "+" + location.Longitude.ToString() + "&key=40bea2833c1f4a3aabd05266cc01b682"); //API call
-            var data = JsonConvert.DeserializeObject<Address>(json);
+            try
+            {
+                Permission[] _requiredPermissions = { Permission.Location }; //Povolení lokace
+                var results = await CrossPermissions.Current.RequestPermissionsAsync(_requiredPermissions); //Čekání na povolení lokace
+                var location = await Geolocation.GetLocationAsync(); //Získání lokace
+                var json = new WebClient().DownloadString("https://api.opencagedata.com/geocode/v1/json?q=" + location.Latitude.ToString() + "+" + location.Longitude.ToString() + "&key=40bea2833c1f4a3aabd05266cc01b682"); //API call
+                var data = JsonConvert.DeserializeObject<GeocoderResponse>(json);
+                foreach (var component in data.Results[0].ComponentsDictionary)
+                {
+                    if (component.Key == "city")
+                    {
+                        VstupniText = component.Value;
+                    }
+                }
+                OnPropertyChanged("VstupniText");
+            }
+            catch
+            {
+                Permission[] _requiredPermissions = { Permission.Location }; 
+                var results = await CrossPermissions.Current.RequestPermissionsAsync(_requiredPermissions); 
+            }
         }
 
         private void GetWeatherData()
