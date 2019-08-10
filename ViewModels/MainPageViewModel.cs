@@ -1,13 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Android;
+using Java.Util;
+using Newtonsoft.Json;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using WeatherApp.ViewModels.Models;
-using WeatherApp.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace WeatherApp.ViewModels
@@ -33,9 +32,14 @@ namespace WeatherApp.ViewModels
         public string Vlhkost { get; set; }
         public string ZapadSlunce { get; set; }
 
-        private void NajitLokaci()
+        private async void NajitLokaci()
         {
-            
+            Permission[] _requiredPermissions = { Permission.Location }; //Povolení lokace
+            var results = await CrossPermissions.Current.RequestPermissionsAsync(_requiredPermissions); //Čekání na povolení lokace
+            var location = await Geolocation.GetLocationAsync(); //Získání lokace
+
+            var json = new WebClient().DownloadString("https://api.opencagedata.com/geocode/v1/json?q=" + location.Latitude.ToString() + "+" + location.Longitude.ToString() + "&key=40bea2833c1f4a3aabd05266cc01b682"); //API call
+            var data = JsonConvert.DeserializeObject<Address>(json);
         }
 
         private void GetWeatherData()
@@ -84,5 +88,7 @@ namespace WeatherApp.ViewModels
 
             return final.ToString();
         }
+
     }
+
 }

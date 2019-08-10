@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System;
 using WeatherApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

@@ -9,7 +9,7 @@
              BindingContext="{viewmodels:MainPageViewModel}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Počasí pro husťáky" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+            <Label Text="Weather App" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
